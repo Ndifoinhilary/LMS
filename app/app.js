@@ -15,9 +15,7 @@ app.use(express.urlencoded({ extended: true }))
 // routers
 app.use('/api/v1/admin', adminRouter);
 
-app.get('/me/',isLoggin, async (req, res) => {
-    console.log(req.user)
-});
+
 
 // error handles middleware
 app.use(NotFound)

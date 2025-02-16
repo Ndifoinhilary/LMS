@@ -1,40 +1,29 @@
 import express from 'express';
-import {login, register} from "../../controller/staff/adminController.js";
+import {
+    deleteAdmin,
+    getAdminProfile,
+    getAllAdmin,
+    login,
+    register,
+    updateAdmin
+} from "../../controller/staff/adminController.js";
+import {isAdmin, isLoggin} from "../../middlewares/isLoggin.js";
+
 const adminRouter = express.Router();
 
 // register an admin
-adminRouter.post('/register/',register)
+adminRouter.post('/register/', register)
 
 // login an admin
-adminRouter.post('/login/',login)
+adminRouter.post('/login/', login)
 
-// update and admin
-adminRouter.put('/update/:id/', (req, res) => {
-     try {
+//  admin profile
+adminRouter.get('/me/', isLoggin, getAdminProfile)
 
-    }
-    catch(err) {
-        console.log(err);
-    }
-})
-
-// delete an admin
-adminRouter.delete('/delete/:id/', (req, res) => {
-     try {
-
-    }
-    catch(err) {
-        console.log(err);
-    }
-})
+// update an admin
+adminRouter.put('/update/',isLoggin, isAdmin ,updateAdmin)
 // get all the admins
-adminRouter.get('/', (req, res) => {
-     try {
+adminRouter.get('/', isLoggin, isAdmin, getAllAdmin);
 
-    }
-    catch(err) {
-        console.log(err);
-    }
-});
-
+adminRouter.delete('/', isLoggin, isAdmin ,deleteAdmin);
 export default adminRouter;
