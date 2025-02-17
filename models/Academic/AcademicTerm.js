@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Joi from "joi";
 
 
 const academicTermSchema = new mongoose.Schema(
@@ -26,5 +27,15 @@ const academicTermSchema = new mongoose.Schema(
 );
 
 const AcademicTerm = mongoose.model("AcademicTerm", academicTermSchema);
+
+export function validateTerm(academicTerm) {
+    const schema  = Joi.object({
+        name: Joi.string().required(),
+        description: Joi.string().required(),
+        duration: Joi.string().required(),
+    })
+
+    return schema.validate(academicTerm, { abortEarly: false });
+}
 
 export default AcademicTerm;

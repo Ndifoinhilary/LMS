@@ -4,6 +4,7 @@ import adminRouter from "../routers/staff/adminRouter.js";
 import {GlobalErrorHandle, NotFound} from "../middlewares/globalErrorHandle.js";
 import {isLoggin} from "../middlewares/isLoggin.js";
 import academicYearRouter from "../routers/academics/AcademicYear.js";
+import academicTermRouter from "../routers/academics/AcademicTerm.js";
 
 
 const app = express()
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: true }))
 // routers
 app.use('/api/v1/admin', adminRouter);
 app.use('/api/v1/academic-year', academicYearRouter)
+app.use('/api/v1/academic-term', academicTermRouter)
 
 
 // error handles middleware
