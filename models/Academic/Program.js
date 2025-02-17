@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Joi from "joi";
 
 const ProgramSchema = new mongoose.Schema(
     {
@@ -62,5 +63,15 @@ const ProgramSchema = new mongoose.Schema(
     { timestamps: true }
 );
 const Program = mongoose.model("Program", ProgramSchema);
+
+export function validate(program) {
+   const schema  = Joi.object({
+        name: Joi.string().required(),
+        description: Joi.string().required(),
+        duration: Joi.string().required(),
+    })
+
+    return schema.validate(program, { abortEarly: false });
+}
 
 export default Program;

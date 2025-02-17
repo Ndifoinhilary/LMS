@@ -2,10 +2,10 @@ import express  from "express"
 import morgan  from "morgan"
 import adminRouter from "../routers/staff/adminRouter.js";
 import {GlobalErrorHandle, NotFound} from "../middlewares/globalErrorHandle.js";
-import {isLoggin} from "../middlewares/isLoggin.js";
 import academicYearRouter from "../routers/academics/AcademicYear.js";
 import academicTermRouter from "../routers/academics/AcademicTerm.js";
 import classLevelRouter from "../routers/academics/ClassLevel.js";
+import ProgramRouter from "../routers/academics/Program.js";
 
 
 const app = express()
@@ -20,6 +20,7 @@ app.use('/api/v1/admin', adminRouter);
 app.use('/api/v1/academic-year', academicYearRouter)
 app.use('/api/v1/academic-term', academicTermRouter)
 app.use('/api/v1/class-level', classLevelRouter)
+app.use('/api/v1/program', ProgramRouter)
 
 
 // error handles middleware
