@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Joi from "joi";
 
 const subjectSchema = new mongoose.Schema(
     {
@@ -34,5 +35,16 @@ const subjectSchema = new mongoose.Schema(
 );
 
 const Subject = mongoose.model("Subject", subjectSchema);
+
+
+export function validate(subject) {
+   const schema  = Joi.object({
+        name: Joi.string().required(),
+        description: Joi.string().required(),
+        duration: Joi.string().required(),
+    })
+
+    return schema.validate(subject, { abortEarly: false });
+}
 
 export default Subject;

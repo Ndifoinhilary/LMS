@@ -64,7 +64,7 @@ export const getAcademicTerm = asyncHandler(async (req, res) => {
 })
 
 export const getAllAcademicTerm = asyncHandler(async (req, res) => {
-    const terms = await AcademicTerm.find({});
+    const terms = await AcademicTerm.find().populate('subject');
     return res.status(200).json({
         success: true,
         data: terms

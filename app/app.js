@@ -6,6 +6,7 @@ import academicYearRouter from "../routers/academics/AcademicYear.js";
 import academicTermRouter from "../routers/academics/AcademicTerm.js";
 import classLevelRouter from "../routers/academics/ClassLevel.js";
 import ProgramRouter from "../routers/academics/Program.js";
+import SubjectRouter from "../routers/academics/subject.js";
 
 
 const app = express()
@@ -21,6 +22,7 @@ app.use('/api/v1/academic-year', academicYearRouter)
 app.use('/api/v1/academic-term', academicTermRouter)
 app.use('/api/v1/class-level', classLevelRouter)
 app.use('/api/v1/program', ProgramRouter)
+app.use('/api/v1/subject', SubjectRouter)
 
 
 // error handles middleware
