@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Joi from "joi";
 
 const academicYearSchema = new mongoose.Schema(
     {
@@ -46,5 +47,15 @@ const academicYearSchema = new mongoose.Schema(
 
 //model
 const AcademicYear = mongoose.model("AcademicYear", academicYearSchema);
+
+export function validate(academicYear) {
+    const schema = Joi.object({
+        name: Joi.string().required(),
+        fromYear: Joi.date().required(),
+        toYear: Joi.date().greater(Joi.ref('fromYear')).required(),
+        isCurrent: Joi.boolean(),
+    })
+    return schema.validate(academicYear, {abortEarly: false});
+}
 
 export default AcademicYear;
