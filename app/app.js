@@ -5,6 +5,7 @@ import {GlobalErrorHandle, NotFound} from "../middlewares/globalErrorHandle.js";
 import {isLoggin} from "../middlewares/isLoggin.js";
 import academicYearRouter from "../routers/academics/AcademicYear.js";
 import academicTermRouter from "../routers/academics/AcademicTerm.js";
+import classLevelRouter from "../routers/academics/ClassLevel.js";
 
 
 const app = express()
@@ -18,6 +19,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/api/v1/admin', adminRouter);
 app.use('/api/v1/academic-year', academicYearRouter)
 app.use('/api/v1/academic-term', academicTermRouter)
+app.use('/api/v1/class-level', classLevelRouter)
 
 
 // error handles middleware

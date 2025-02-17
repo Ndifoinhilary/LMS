@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Joi from "joi";
 
 
 const ClassLevelSchema = new mongoose.Schema(
@@ -41,5 +42,14 @@ const ClassLevelSchema = new mongoose.Schema(
 );
 
 const ClassLevel = mongoose.model("ClassLevel", ClassLevelSchema);
+
+export function validateClassLevel(classLevel) {
+    const schema  = Joi.object({
+        name: Joi.string().required(),
+        description: Joi.string().required(),
+    })
+
+    return schema.validate(classLevel, { abortEarly: false });
+}
 
 export default ClassLevel;
